@@ -1,15 +1,20 @@
 package web.model;
 
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Component
 @Table(name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
+
 public class Role implements GrantedAuthority {
 
     @Id
@@ -30,28 +35,10 @@ public class Role implements GrantedAuthority {
         this.users = users;
     }
 
-    public Role() {
-    }
-
     public Role(String role) {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     public String getAuthority() {
@@ -63,18 +50,5 @@ public class Role implements GrantedAuthority {
         return role;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Role role1 = (Role) o;
-        return Objects.equals(id, role1.id) &&
-                Objects.equals(role, role1.role) &&
-                Objects.equals(users, role1.users);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, role, users);
-    }
 }
