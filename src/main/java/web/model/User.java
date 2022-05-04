@@ -93,7 +93,6 @@ public class User implements UserDetails {
         return true;
     }
 
-
     public Set<Role> getRoles() {
         return roles;
     }

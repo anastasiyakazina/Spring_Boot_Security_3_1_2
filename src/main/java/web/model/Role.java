@@ -3,6 +3,7 @@ package web.model;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,21 +25,9 @@ public class Role implements GrantedAuthority {
     @Column(unique = true)
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
     public Role(String role) {
         this.role = role;
     }
-
 
     @Override
     public String getAuthority() {
@@ -49,6 +38,5 @@ public class Role implements GrantedAuthority {
     public String toString() {
         return role;
     }
-
 
 }
